@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+    /* ----- Light Background ----- */
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #e3e4e6;
+    }
+
+    /* ----- Card Style ----- */
+    #loginCard {
+        border-radius: 15px;
+        overflow: hidden;
+        animation: cardFadeIn 1s ease forwards;
+        opacity: 0;
+        transform: translateY(-30px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        background: #fff;
+        padding: 30px;
+        width: 100%;
+        max-width: 400px;
+    }
+
+    @keyframes cardFadeIn {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* ----- Input Fields with Icons ----- */
+    .input-group {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    .input-group i {
+        position: absolute;
+        left: 12px;
+        color: #aaa;
+        font-size: 18px;
+    }
+
+    .input-group input {
+        padding-left: 38px;
+    }
+
+    .input-group input:focus + i {
+        color: #007bff;
+    }
+
+    /* ----- Buttons Hover ----- */
+    button.btn, .input-group button {
+        transition: all 0.3s ease;
+    }
+
+    button.btn:hover, .input-group button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    /* ----- Flash Messages ----- */
+    .alert {
+        border-radius: 8px;
+        font-size: 15px;
+        animation: flashFade 0.8s ease;
+    }
+
+    @keyframes flashFade {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ----- Shake Animation ----- */
+    .shake {
+        animation: shake 0.3s ease-in-out 0s 1;
+    }
+    @keyframes shake {
+        0% { transform: translateX(0); }
+        25% { transform: translateX(-8px); }
+        50% { transform: translateX(8px); }
+        75% { transform: translateX(-8px); }
+        100% { transform: translateX(0); }
+    }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card shadow mx-auto" id="loginCard">
+        <div class="card-body">
+
+            <h2 class="text-center mb-4">Login</h2>
+
+            <!-- 🔥 FLASH MESSAGES -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    document.getElementById("loginCard").classList.add("shake");
+                });
+            </script>
+
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <form method="POST">
+
+                <!-- Username -->
+                <div class="mb-3 input-group">
+                    <input type="text" name="identifier" class="form-control" placeholder="Username" required>
+                    <i class="bi bi-person-fill"></i>
+                </div>
+
+                <!-- Password -->
+                <div class="mb-3 input-group">
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+                    <i class="bi bi-lock-fill"></i>
+                    <button class="btn btn-outline-secondary" type="button" onclick="togglePassword()">Show</button>
+                </div>
+
+                <div class="text-end mb-3">
+                    <a href="/forgot-password" class="text-decoration-none">Forgot Password?</a>
+                </div>
+
+                <button class="btn btn-primary w-100 mt-2">Login</button>
+
+                <p class="mt-3 text-center">
+                    No account? <a href="/register">Sign Up</a>
+                </p>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+function togglePassword() {
+    let pass = document.getElementById("password");
+    pass.type = pass.type === "password" ? "text" : "password";
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

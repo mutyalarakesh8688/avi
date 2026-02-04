@@ -1,0 +1,168 @@
+/* ----- General Page Style ----- */
+body {
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #f0f4ff, #e0e9ff);
+    min-height: 100vh;
+    animation: backgroundShift 15s infinite alternate;
+}
+
+@keyframes backgroundShift {
+    0% { background-position: 0 0; }
+    100% { background-position: 100% 100%; }
+}
+
+/* ----- Page Title ----- */
+h1 {
+    text-align: center;
+    color: #333;
+    padding: 20px 0;
+    margin: 0;
+    font-size: 36px;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeSlideIn 0.8s ease forwards;
+}
+
+/* ----- Container Box ----- */
+.container {
+    width: 85%;
+    background: #fff;
+    margin: 30px auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeSlideIn 0.8s ease forwards;
+    animation-delay: 0.2s;
+}
+
+/* ----- Buttons ----- */
+a.btn, button {
+    background: #0066ff;
+    color: white;
+    padding: 10px 18px;
+    text-decoration: none;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+a.btn:hover, button:hover {
+    background: #004ecc;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* Delete Button */
+a.delete-btn {
+    background: #ff4d4d;
+}
+
+a.delete-btn:hover {
+    background: #cc0000;
+    transform: translateY(-3px) scale(1.02);
+}
+
+/* ----- Table Style ----- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+table th {
+    background: #0066ff;
+    color: white;
+    padding: 14px;
+    text-align: left;
+}
+
+table td {
+    padding: 12px 10px;
+    background: white;
+    transition: background 0.3s ease;
+}
+
+table tr:nth-child(even) td {
+    background: #f0f4ff;
+}
+
+table tr:hover td {
+    background: #e6f0ff;
+    transform: scale(1.01);
+}
+
+.animated-row {
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: rowFade 0.6s ease forwards;
+}
+
+@keyframes rowFade {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ----- Add Page Form ----- */
+form {
+    width: 50%;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeSlideIn 0.8s ease forwards;
+    animation-delay: 0.2s;
+}
+
+label {
+    font-weight: 600;
+    color: #333;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #0066ff;
+    box-shadow: 0 2px 6px rgba(0,102,255,0.2);
+    outline: none;
+}
+
+/* ----- Buttons in Forms ----- */
+button {
+    width: 100%;
+    background: #007bff;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #004ecc;
+    transform: translateY(-2px) scale(1.02);
+}
+
+/* ----- Keyframes for Fade & Slide ----- */
+@keyframes fadeSlideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
