@@ -9,110 +9,117 @@
 
     <style>
         body {
-    background: 
-        linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
-        url("https://images.unsplash.com/photo-1503376780353-7e6692767b70");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    overflow: hidden;
-}
-
+            background: 
+                linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+                url("https://images.unsplash.com/photo-1503376780353-7e6692767b70");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
 
         /* Top Right Profile Bar */
         .top-bar {
             position: absolute;
-            top: 20px;
-            right: 25px;
+            top: 15px;
+            right: 15px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             color: white;
-            font-size: 18px;
+            font-size: 16px;
             animation: fadeIn 1s ease-in-out;
         }
 
         .profile-circle {
-            width: 45px;
-            height: 45px;
-            background: rgba(255, 255, 255, 0.3);
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.3);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 22px;
+            font-size: 18px;
             font-weight: bold;
         }
 
         .logout-btn {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 8px 18px;
+            background: rgba(0,0,0,0.3);
+            padding: 6px 15px;
             border-radius: 20px;
             color: white;
             text-decoration: none;
             font-weight: 600;
-
             transition: 0.3s;
+            font-size: 14px;
         }
-        .logout-btn:hover {
-            background: rgba(0, 0, 0, 0.5);
-        }
+        .logout-btn:hover { background: rgba(0,0,0,0.5); }
 
         .welcome-container {
             text-align: center;
-            margin-top: 8%;
+            margin-top: 15%;
             color: white;
             animation: fadeIn 1.2s ease-in-out;
+            padding: 0 15px;
         }
 
         .welcome-title {
-            font-size: 55px;
+            font-size: 40px;
             font-weight: 800;
             animation: slideDown 1.3s ease-in-out;
         }
 
         .welcome-subtitle {
-            font-size: 22px;
-            margin-top: -10px;
+            font-size: 18px;
+            margin-top: -5px;
             animation: slideUp 1.3s ease-in-out;
         }
 
         .animated-car {
-            width: 280px;
+            width: 200px;
             animation: carMove 4s ease-in-out infinite;
-        }
-
-        @keyframes carMove {
-            0% { transform: translateX(-30px); }
-            50% { transform: translateX(30px); }
-            100% { transform: translateX(-30px); }
+            margin: 15px 0;
         }
 
         .btn-custom {
-            padding: 12px 28px;
+            padding: 10px 20px;
             border-radius: 50px;
-            font-size: 18px;
-            margin: 10px;
+            font-size: 16px;
+            margin: 5px;
         }
 
         /* Animations */
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         @keyframes slideDown {
-            0% { opacity: 0; transform: translateY(-40px); }
+            0% { opacity: 0; transform: translateY(-30px); }
             100% { opacity: 1; transform: translateY(0); }
         }
-
         @keyframes slideUp {
-            0% { opacity: 0; transform: translateY(40px); }
+            0% { opacity: 0; transform: translateY(30px); }
             100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes carMove {
+            0% { transform: translateX(-20px); }
+            50% { transform: translateX(20px); }
+            100% { transform: translateX(-20px); }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 480px) {
+            .welcome-title { font-size: 28px; }
+            .welcome-subtitle { font-size: 16px; }
+            .top-bar { font-size: 14px; gap: 6px; }
+            .profile-circle { width: 35px; height: 35px; font-size: 16px; }
+            .logout-btn { padding: 5px 10px; font-size: 12px; }
+            .animated-car { width: 150px; }
+            .btn-custom { font-size: 14px; padding: 8px 15px; }
+            .welcome-container { margin-top: 25%; }
         }
     </style>
 </head>
@@ -120,35 +127,20 @@
 
 <!-- TOP RIGHT PROFILE + LOGOUT -->
 <div class="top-bar">
-    <div class="profile-circle">
-        {{ current_user.username[0] | upper }}
-    </div>
+    <div class="profile-circle">{{ current_user.username[0] | upper }}</div>
     <span>{{ current_user.username }}</span>
-
     <a href="{{ url_for('logout') }}" class="logout-btn">🚪 Logout</a>
 </div>
 
 <div class="welcome-container">
-
     <h1 class="welcome-title">🚗 Welcome Driver!</h1>
     <p class="welcome-subtitle">Your journey starts here</p>
 
-    
-    <div class="mt-4">
-        <a href="{{ url_for('add') }}" class="btn btn-light btn-custom fw-bold">
-            ➕ Add New Trip
-        </a>
-
-        <a href="{{ url_for('index') }}" class="btn btn-dark btn-custom fw-bold">
-            📋 View Trip List
-        </a>
-
-        <a href="{{ url_for('profile') }}" class="btn btn-warning btn-custom fw-bold">
-    👤 Profile
-</a>
-
+    <div class="mt-3">
+        <a href="{{ url_for('add') }}" class="btn btn-light btn-custom fw-bold">➕ Add New Trip</a>
+        <a href="{{ url_for('index') }}" class="btn btn-dark btn-custom fw-bold">📋 View Trip List</a>
+        <a href="{{ url_for('profile') }}" class="btn btn-warning btn-custom fw-bold">👤 Profile</a>
     </div>
-
 </div>
 
 </body>
